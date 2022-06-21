@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+
+  db:
+    image: postgres
+    container_name: postgresDB
+    restart: always
+    ports:
+      - "54321:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: apiDB
+      DATABASE_HOST: ${DB_HOST}
+      DATABASE_PORT: ${DB_PORT}
+
+  web:
+    image: ivarude/market_api
+    container_name: market_api
+    command: >
+      sh -c "cd Code &&
+             alembic upgrade heads &&
+             cd .. &&
+             python3 -m Code.api"
+
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: db
+    links:
+      - db
+    restart: always
+
+
+volumes:
+    esdata1:
+      driver: local
+
+# Networks to be created to facilitate communication between containers
+networks:
+  learning:
+    driver: bridge
