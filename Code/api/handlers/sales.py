@@ -6,22 +6,16 @@ from sqlalchemy import and_
 from sqlalchemy import select
 
 from .base import BaseView
-from .schema import SalesSchema
+from Code.api.schema import SalesSchema
 
 
 class SalesView(BaseView):
     URL_PATH = '/sales'
 
-    @property
-    def content(self):
-        try:
-            return str(self.request.match_info.get('content'))
-        except Exception as e:
-            return None
-
     async def get(self):
         try:
             content = self.request.rel_url.query
+            self.validate_date(content['date'])
             SalesSchema().load(content)
         except Exception as e:
             return json_response({'code': 400, 'message': 'Validation failed'}, status=400)

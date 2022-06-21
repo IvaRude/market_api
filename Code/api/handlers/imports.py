@@ -8,7 +8,7 @@ from aiomisc import chunk_list
 from sqlalchemy import insert, union
 
 from .base import BaseImportView
-from .schema import ImportSchema
+from Code.api.schema import ImportSchema
 
 
 class ImportView(BaseImportView):
@@ -20,6 +20,7 @@ class ImportView(BaseImportView):
     async def post(self):
         try:
             content = await self.request.json()
+            self.validate_date(content['updateDate'])
             ImportSchema().load(content)
             update_date, time_zone = self.from_iso_to_datetime_with_tz(content['updateDate'])
             content['updateDate'] = update_date

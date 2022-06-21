@@ -1,30 +1,31 @@
+import re
+from datetime import datetime, timedelta
 from random import randint
 
+from Code.api.schema import UUIDSchema
+from Code.db.models import Items
 from aiohttp.web_urldispatcher import View
 from asyncpgsa import PG
 from marshmallow import ValidationError
 from sqlalchemy import select, update
 from sqlalchemy.orm import aliased
 
-from Code.db.models import Items
-from .schema import UUIDSchema
-from datetime import datetime, timedelta
-
-import logging
-logging.basicConfig(filename='app_log.txt', level=logging.INFO)
-fh = logging.FileHandler('app_log.txt')
-log = logging.getLogger(__name__)
-log.addHandler(fh)
-log.setLevel(logging.INFO)
 
 class BaseView(View):
     URL_PATH: str
 
-    logger = log
-
     @property
     def pg(self) -> PG:
         return self.request.app['pg']
+
+    @staticmethod
+    def validate_date(date):
+        if date.endswith('+00:00') or date.endswith('-00:00'):
+            raise ValidationError('Bad date format')
+        pattern = r'([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.\d\d\d)?(Z|[+-](\d\d):[0-5][0-9])$'
+        res = re.match(pattern, date)
+        if not res:
+            raise ValidationError('Bad date format')
 
     @staticmethod
     def from_iso_to_datetime_with_tz(date: str) -> tuple:

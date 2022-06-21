@@ -6,7 +6,7 @@ from sqlalchemy import and_
 from sqlalchemy import select
 
 from .base import BaseWithIDView
-from .schema import StatisticSchema
+from Code.api.schema import StatisticSchema
 
 
 class StatisticView(BaseWithIDView):
@@ -15,6 +15,10 @@ class StatisticView(BaseWithIDView):
     async def get(self):
         try:
             content = self.request.rel_url.query
+            if 'dateStart' in content:
+                self.validate_date(content['dateStart'])
+            if 'dateEnd' in content:
+                self.validate_date(content['dateEnd'])
             StatisticSchema().load(content)
         except Exception as e:
             return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
