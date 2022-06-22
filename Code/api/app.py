@@ -1,14 +1,16 @@
 from functools import partial
 
-from Code.utils.pg import setup_pg
 from aiohttp.web_app import Application
 from aiohttp_apispec import setup_aiohttp_apispec
 
-from .handlers import HANDLERS
+from Code.utils.pg import setup_pg
+from handlers import HANDLERS
 
 MEGABYTE = 1024 ** 2
 MAX_REQUEST_SIZE = 70 * MEGABYTE
 
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "Code")))
 
 def create_app():
     app = Application(client_max_size=MAX_REQUEST_SIZE)

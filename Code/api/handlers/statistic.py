@@ -46,6 +46,6 @@ class StatisticView(BaseWithIDView):
                 records = await self.pg.fetch(select(History).filter(
                     and_(History.item_id == self.item_id)))
             statistic_units = [self.from_record_to_statistic_unit(record) for record in records]
-            return json_response(statistic_units, status=200)
+            return json_response({'items': statistic_units}, status=200)
         except Exception as e:
             return json_response({'code': 404, 'message': 'Item not found'}, status=404)

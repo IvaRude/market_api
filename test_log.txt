@@ -1,0 +1,246 @@
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:21:38
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+ERROR:asyncio:unhandled exception during asyncio.run() shutdown
+task: <Task finished name='Task-1' coro=<_run_app() done, defined at /home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web.py:287> exception=PermissionError(13, "error while attempting to bind on address ('0.0.0.0', 80): permission denied")>
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web.py", line 514, in run_app
+    loop.run_until_complete(main_task)
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web.py", line 413, in _run_app
+    await site.start()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_runner.py", line 121, in start
+    self._server = await loop.create_server(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1463, in create_server
+    raise OSError(err.errno, 'error while attempting '
+PermissionError: [Errno 13] error while attempting to bind on address ('0.0.0.0', 80): permission denied
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:22:03
+INFO:Code.utils.pg:Connected to database
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 20, in get
+    self.logger.info('GET request for / at ' + str(datetime.now().strftime('%H:%M:%S')))
+AttributeError: 'TestView' object has no attribute 'logger'
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 20, in get
+    self.logger.info('GET request for / at ' + str(datetime.now().strftime('%H:%M:%S')))
+AttributeError: 'TestView' object has no attribute 'logger'
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 20, in get
+    self.logger.info('GET request for / at ' + str(datetime.now().strftime('%H:%M:%S')))
+AttributeError: 'TestView' object has no attribute 'logger'
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:27:05
+INFO:Code.utils.pg:Connected to database
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 29, in get
+    query = insert(Items).values(item_id=str(uuid.uuid4()), type='OFFER', date=date, name='asdasd')
+NameError: name 'date' is not defined
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 29, in get
+    query = insert(Items).values(item_id=str(uuid.uuid4()), type='OFFER', date=date, name='asdasd')
+NameError: name 'date' is not defined
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:27:45
+INFO:Code.utils.pg:Connected to database
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 32, in get
+    res = await self.pg.fetch(all_query)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpgsa/pgsingleton.py", line 73, in fetch
+    return await conn.fetch(query, *args, timeout=timeout)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 621, in fetch
+    return await self._execute(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 1659, in _execute
+    result, _ = await self.__execute(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 1684, in __execute
+    return await self._do_execute(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 1711, in _do_execute
+    stmt = await self._get_statement(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 398, in _get_statement
+    statement = await self._protocol.prepare(
+  File "asyncpg/protocol/protocol.pyx", line 168, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "items" does not exist
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 32, in get
+    res = await self.pg.fetch(all_query)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpgsa/pgsingleton.py", line 73, in fetch
+    return await conn.fetch(query, *args, timeout=timeout)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 621, in fetch
+    return await self._execute(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 1659, in _execute
+    result, _ = await self.__execute(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 1684, in __execute
+    return await self._do_execute(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 1711, in _do_execute
+    stmt = await self._get_statement(
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 398, in _get_statement
+    statement = await self._protocol.prepare(
+  File "asyncpg/protocol/protocol.pyx", line 168, in prepare
+asyncpg.exceptions.UndefinedTableError: relation "items" does not exist
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:29:46
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:31:11
+INFO:Code.utils.pg:Connected to database
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_protocol.py", line 435, in _handle_request
+    resp = await request_handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_app.py", line 504, in _handle
+    resp = await handler(request)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/aiohttp/web_urldispatcher.py", line 954, in _iter
+    resp = await method()
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/source/Code/api/handlers/test_handler.py", line 29, in get
+    await self.pg.execute(query)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpgsa/pgsingleton.py", line 86, in execute
+    return await conn.execute(*args, **kwargs)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpgsa/connection.py", line 102, in execute
+    result = await super().execute(script, *args, **kwargs)
+  File "/home/ivarude/PycharmProjects/BackendSchool2022/venv/lib/python3.8/site-packages/asyncpg/connection.py", line 318, in execute
+    return await self._protocol.query(query, timeout)
+  File "asyncpg/protocol/protocol.pyx", line 338, in query
+asyncpg.exceptions.ForeignKeyViolationError: update or delete on table "items" violates foreign key constraint "history_item_id_fkey" on table "history"
+DETAIL:  Key (item_id)=(b1d8fd7d-2ae3-47d5-b2f9-0f094af800d4) is still referenced from table "history".
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:31:39
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:31:52
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:32:05
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:32:42
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:52:53
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 12:58:38
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:00:07
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:02:49
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:03:56
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:04:25
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:12:12
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:20:01
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:24:34
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:24:49
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 13:26:30
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 00:31:38
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database

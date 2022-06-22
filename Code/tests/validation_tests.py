@@ -1,6 +1,6 @@
 import uuid
 
-from unit_test import API_BASEURL, request, deep_sort_children
+from unit_test import request
 
 
 def import_request(data, expected_status):
@@ -132,6 +132,7 @@ def test_all_validators():
     test_offer_has_bad_price()
     test_category_has_price()
     test_bad_parent_id()
+
 
 if __name__ == '__main__':
     test_all_validators()

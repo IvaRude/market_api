@@ -60,7 +60,7 @@ class BaseView(View):
         statistic_unit = {
             'id': str(record['item_id']),
             'name': record['name'],
-            'parentId': str(record['parent_id']),
+            'parentId': str(record['parent_id']) if record['parent_id'] else None,
             'date': self.from_datetime_with_tz_to_iso((str(record['date']), record['timezone'])),
             'type': record['type'],
             'price': record['price'],
@@ -181,6 +181,10 @@ class BaseView(View):
                 cur_id = cur_items[cur_id]['parent_id']
 
         for item in new_info['items']:
+            if 'parentId' not in item:
+                item['parentId'] = None
+            if 'price' not in item:
+                item['price'] = None
             if item['type'] != cur_items[item['id']]['type']:
                 raise ValidationError('Type may not be changed')
             if item['id'] in new_ids:
@@ -197,9 +201,9 @@ class BaseView(View):
                             update_parent_of_category(old_parent_id, item, kind_of_action=-1)
                     if new_parent_id is not None:
                         if item['type'] == 'OFFER':
-                            update_parents_of_offer(old_parent_id, item, kind_of_action=1)
+                            update_parents_of_offer(new_parent_id, item, kind_of_action=1)
                         else:
-                            update_parent_of_category(old_parent_id, item, kind_of_action=1)
+                            update_parent_of_category(new_parent_id, item, kind_of_action=1)
                 elif new_parent_id is not None and item['type'] == 'OFFER' and \
                         cur_items[item['id']]['price'] != item['price']:
                     update_parents_of_offer(new_parent_id, item, kind_of_action=0)
@@ -219,10 +223,11 @@ class BaseImportView(BaseView):
         for item in import_items:
             if item['id'] in new_ids:
                 all_types[item['id']] = item['type']
-            if item['parentId']:
+            if 'parentId' in item and item['parentId']:
                 parent_ids.add(item['parentId'])
         if len(parent_ids) == 0:
             return
+        # Getting types of items that are parents in import
         query = "SELECT item_id, type FROM items WHERE item_id IN ("
         for parent_id in parent_ids:
             query += "'" + str(parent_id) + "', "

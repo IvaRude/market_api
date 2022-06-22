@@ -3,73 +3,37 @@
     {
       "children": [
         {
-          "children": null,
-          "date": "2022-02-03T15:00:00.000Z",
-          "id": "73bc3b36-02d1-4245-ab35-3106c9ee1c65",
-          "name": "Goldstar 65\" LED UHD LOL Very Smart",
-          "parentId": "1cc0129a-2bfe-474c-9ee6-d435bf5fc8f2",
-          "price": 69999,
-          "type": "OFFER"
-        },
-        {
-          "children": null,
-          "date": "2022-02-03T12:00:00.000Z",
-          "id": "74b81fda-9cdc-4b63-8927-c978afed5cf4",
-          "name": "Phyllis 50\" LED UHD Smarter",
-          "parentId": "1cc0129a-2bfe-474c-9ee6-d435bf5fc8f2",
-          "price": 49999,
-          "type": "OFFER"
-        },
-        {
-          "children": null,
-          "date": "2022-02-03T12:00:00.000Z",
-          "id": "98883e8f-0507-482f-bce2-2fb306cf6483",
-          "name": "Samson 70\" LED UHD Smart",
-          "parentId": "1cc0129a-2bfe-474c-9ee6-d435bf5fc8f2",
-          "price": 32999,
-          "type": "OFFER"
+          "children": [
+            {
+              "children": null,
+              "date": "2022-02-02T20:00:00.000Z",
+              "id": "42d11513-db2e-4160-9460-c658d8926dd0",
+              "name": "offer_0",
+              "parentId": "f544cc0b-6365-40fe-96db-3b1d37dfeeb0",
+              "price": 1,
+              "type": "OFFER"
+            }
+          ],
+          "date": "2022-02-02T22:00:00.000Z",
+          "id": "f544cc0b-6365-40fe-96db-3b1d37dfeeb0",
+          "name": "category_2",
+          "parentId": "d8fff7e3-d402-4a58-91fc-a7c434d91dd3",
+          "price": 1,
+          "type": "CATEGORY"
         }
       ],
-      "date": "2022-02-03T15:00:00.000Z",
-      "id": "1cc0129a-2bfe-474c-9ee6-d435bf5fc8f2",
-      "name": "Телевизоры",
-      "parentId": "069cb8d7-bbdd-47d3-ad8f-82ef4c269df1",
-      "price": 50999,
-      "type": "CATEGORY"
-    },
-    {
-      "children": [
-        {
-          "children": null,
-          "date": "2022-02-02T12:00:00.000Z",
-          "id": "863e1a7a-1304-42ae-943b-179184c077e3",
-          "name": "jPhone 13",
-          "parentId": "d515e43f-f3f6-4471-bb77-6b455017a2d2",
-          "price": 79999,
-          "type": "OFFER"
-        },
-        {
-          "children": null,
-          "date": "2022-02-02T12:00:00.000Z",
-          "id": "b1d8fd7d-2ae3-47d5-b2f9-0f094af800d4",
-          "name": "Xomiа Readme 10",
-          "parentId": "d515e43f-f3f6-4471-bb77-6b455017a2d2",
-          "price": 59999,
-          "type": "OFFER"
-        }
-      ],
-      "date": "2022-02-02T12:00:00.000Z",
-      "id": "d515e43f-f3f6-4471-bb77-6b455017a2d2",
-      "name": "Смартфоны",
-      "parentId": "069cb8d7-bbdd-47d3-ad8f-82ef4c269df1",
-      "price": 69999,
+      "date": "2022-02-02T22:00:00.000Z",
+      "id": "d8fff7e3-d402-4a58-91fc-a7c434d91dd3",
+      "name": "category_1",
+      "parentId": "cea4ac4f-0ebd-4f9b-a45a-37b0a043be35",
+      "price": 1,
       "type": "CATEGORY"
     }
   ],
-  "date": "2022-02-03T15:00:00.000Z",
-  "id": "069cb8d7-bbdd-47d3-ad8f-82ef4c269df1",
-  "name": "Товары",
+  "date": "2022-02-02T22:00:00.000Z",
+  "id": "cea4ac4f-0ebd-4f9b-a45a-37b0a043be35",
+  "name": "category_0",
   "parentId": null,
-  "price": 58599,
+  "price": 1,
   "type": "CATEGORY"
 }

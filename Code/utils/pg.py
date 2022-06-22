@@ -12,7 +12,6 @@ load_dotenv()
 
 DB_HOST = os.getenv('DATABASE_HOST')
 
-CENSORED = '***'
 DEFAULT_PG_URL = 'postgresql://admin:admin@0.0.0.0:5432/apiDB'
 # DEFAULT_PG_URL = 'postgresql://admin:admin@0.0.0.0:54321/testDB3'
 

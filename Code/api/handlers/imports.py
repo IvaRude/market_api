@@ -5,7 +5,7 @@ from Code.utils.pg import MAX_QUERY_ARGS
 from aiohttp.web import json_response
 from aiohttp_apispec import docs, request_schema
 from aiomisc import chunk_list
-from sqlalchemy import insert, union
+from sqlalchemy import insert, union, select
 
 from .base import BaseImportView
 from Code.api.schema import ImportSchema
@@ -23,6 +23,7 @@ class ImportView(BaseImportView):
             self.validate_date(content['updateDate'])
             ImportSchema().load(content)
             update_date, time_zone = self.from_iso_to_datetime_with_tz(content['updateDate'])
+            # print('update_date', update_date)
             content['updateDate'] = update_date
             content['timezone'] = time_zone
             all_import_ids = set([item['id'] for item in content['items']])
@@ -58,7 +59,10 @@ class ImportView(BaseImportView):
                             'amount_of_offers': 0
                         })
                     else:
-                        update_items.append({'item_id': item['id'], 'new_parent_id': item['parentId']})
+                        update_items.append(
+                            {'item_id': item['id']})
+                        if 'parentId' in item:
+                            update_items.append({'item_id': item['parentId']})
                 chunked_insert_values = chunk_list(insert_items, self.MAX_ITEMS_PER_INSERT)
                 for chunk in chunked_insert_values:
                     query = insert(Items).values(list(chunk))
@@ -74,6 +78,9 @@ class ImportView(BaseImportView):
                     items_need_to_update[item]['timezone'] = time_zone
                 # Making big update query in Items table
                 insert_history_values = await self.create_update_for_items(items_need_to_update, conn)
+
+                dates = select(Items.date)
+                print(await conn.fetch(dates))
 
                 # Making insert query in History table
                 chunked_insert_history_values = chunk_list(insert_history_values.values(), self.MAX_ITEMS_PER_INSERT)

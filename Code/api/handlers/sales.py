@@ -26,6 +26,6 @@ class SalesView(BaseView):
             records = await self.pg.fetch(select(Items).filter(
                 and_(Items.type == 'OFFER', Items.date >= date_start, Items.date <= sales_date)))
             statistic_units = [self.from_record_to_statistic_unit(record) for record in records]
-            return json_response({'code': 200, 'message': 'Elements list', 'content': statistic_units}, status=200)
+            return json_response({'items': statistic_units}, status=200)
         except Exception as e:
             return json_response({'code': 400, 'message': 'Validation Failed'}, status=400)
