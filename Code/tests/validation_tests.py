@@ -1,6 +1,6 @@
 import uuid
 
-from unit_test import request
+from .unit_test import request
 
 
 def import_request(data, expected_status):
@@ -186,6 +186,7 @@ def test_all_validators():
     test_bad_parent_id()
     test_two_same_ids()
     test_try_change_type()
+
 
 if __name__ == '__main__':
     test_all_validators()

@@ -4,7 +4,7 @@ from aiohttp.web_app import Application
 from aiohttp_apispec import setup_aiohttp_apispec
 
 from Code.utils.pg import setup_pg
-from handlers import HANDLERS
+from .handlers import HANDLERS
 
 MEGABYTE = 1024 ** 2
 MAX_REQUEST_SIZE = 70 * MEGABYTE

@@ -1,9 +1,10 @@
-import uuid
+import sys
 import urllib.error
 import urllib.parse
 import urllib.request
-from unit_test import request, deep_sort_children, print_diff
-import sys
+import uuid
+
+from .unit_test import request, deep_sort_children, print_diff
 
 # all ids for items
 CATEGORY_UUIDS = [str(uuid.uuid4()) for _ in range(9)]
@@ -144,8 +145,8 @@ def change_parent_of_category_8():
             'type': 'CATEGORY',
             'parentId': None,
             'price': 3,
-            'date': '2022-02-02T21:00:00.000Z',
-            # 'date': '2022-02-02T13:00:00.000Z'
+            # 'date': '2022-02-02T21:00:00.000Z',
+            'date': '2022-02-02T13:00:00.000Z'
         }]
     }
     assert status == 200, f"Expected HTTP status code 200, got {status}"
@@ -172,8 +173,8 @@ def add_category_5():
             'name': 'category_5',
             'parentId': CATEGORY_UUIDS[2],
             'price': 2,
-            'date': '2022-02-03T21:00:00.001Z'
-            # 'date': '2022-02-03T13:00:00.001Z'
+            # 'date': '2022-02-03T21:00:00.001Z'
+            'date': '2022-02-03T13:00:00.001Z'
         }
         ]
     }
@@ -193,8 +194,8 @@ def add_category_5():
                 'name': 'offer_1',
                 'parentId': CATEGORY_UUIDS[5],
                 'price': 2,
-                'date': '2022-02-03T21:00:00.001Z'
-                # 'date': '2022-02-03T13:00:00.001Z'
+                # 'date': '2022-02-03T21:00:00.001Z'
+                'date': '2022-02-03T13:00:00.001Z'
             },
             {
                 'id': OFFER_UUIDS[2],
@@ -202,8 +203,8 @@ def add_category_5():
                 'name': 'offer_2',
                 'parentId': CATEGORY_UUIDS[5],
                 'price': 2,
-                'date': '2022-02-03T21:00:00.001Z'
-                # 'date': '2022-02-03T13:00:00.001Z'
+                # 'date': '2022-02-03T21:00:00.001Z'
+                'date': '2022-02-03T13:00:00.001Z'
             },
         ]
     }
@@ -222,32 +223,32 @@ def change_parent_of_category_5():
         'type': 'CATEGORY',
         'parentId': None,
         'price': 1,
-        # 'date': '2022-02-03T13:00:00.001Z',
-        'date': '2022-02-03T21:00:00.001Z',
+        'date': '2022-02-03T13:00:00.001Z',
+        # 'date': '2022-02-03T21:00:00.001Z',
         'children': [
             {'id': CATEGORY_UUIDS[1],
              'name': 'category_1',
              'type': 'CATEGORY',
              'parentId': CATEGORY_UUIDS[0],
              'price': 1,
-             # 'date': '2022-02-03T13:00:00.001Z',
-             'date': '2022-02-03T21:00:00.001Z',
+             'date': '2022-02-03T13:00:00.001Z',
+             # 'date': '2022-02-03T21:00:00.001Z',
              'children': [
                  {'id': CATEGORY_UUIDS[2],
                   'name': 'category_2',
                   'type': 'CATEGORY',
                   'parentId': CATEGORY_UUIDS[1],
                   'price': 1,
-                  # 'date': '2022-02-03T13:00:00.001Z',
-                  'date': '2022-02-03T21:00:00.001Z',
+                  'date': '2022-02-03T13:00:00.001Z',
+                  # 'date': '2022-02-03T21:00:00.001Z',
                   'children': [
                       {'id': OFFER_UUIDS[0],
                        'name': 'offer_0',
                        'type': 'OFFER',
                        'parentId': CATEGORY_UUIDS[2],
                        'price': 1,
-                       # 'date': '2022-02-02T12:00:00.000Z',
-                       'date': '2022-02-02T20:00:00.000Z',
+                       'date': '2022-02-02T12:00:00.000Z',
+                       # 'date': '2022-02-02T20:00:00.000Z',
                        'children': None
                        },
                       {
@@ -256,16 +257,16 @@ def change_parent_of_category_5():
                           'type': 'CATEGORY',
                           'parentId': CATEGORY_UUIDS[2],
                           'price': 2,
-                          # 'date': '2022-02-03T13:00:00.001Z',
-                          'date': '2022-02-03T21:00:00.001Z',
+                          'date': '2022-02-03T13:00:00.001Z',
+                          # 'date': '2022-02-03T21:00:00.001Z',
                           'children': [
                               {'id': OFFER_UUIDS[1],
                                'name': 'offer_1',
                                'type': 'OFFER',
                                'parentId': CATEGORY_UUIDS[5],
                                'price': 2,
-                               # 'date': '2022-02-03T13:00:00.001Z',
-                               'date': '2022-02-03T21:00:00.001Z',
+                               'date': '2022-02-03T13:00:00.001Z',
+                               # 'date': '2022-02-03T21:00:00.001Z',
                                'children': None
                                },
                               {'id': OFFER_UUIDS[2],
@@ -273,8 +274,8 @@ def change_parent_of_category_5():
                                'type': 'OFFER',
                                'parentId': CATEGORY_UUIDS[5],
                                'price': 2,
-                               # 'date': '2022-02-03T13:00:00.001Z',
-                               'date': '2022-02-03T21:00:00.001Z',
+                               'date': '2022-02-03T13:00:00.001Z',
+                               # 'date': '2022-02-03T21:00:00.001Z',
                                'children': None
                                },
                           ]
@@ -314,16 +315,16 @@ def change_parent_of_category_5():
                                                                     'type': 'OFFER',
                                                                     'parentId': CATEGORY_UUIDS[2],
                                                                     'price': 1,
-                                                                    # 'date': '2022-02-02T12:00:00.000Z',
-                                                                    'date': '2022-02-02T20:00:00.000Z',
+                                                                    'date': '2022-02-02T12:00:00.000Z',
+                                                                    # 'date': '2022-02-02T20:00:00.000Z',
                                                                     'children': None
                                                                     }, ]
-    # expected_response['date'] = '2022-02-03T14:00:00.000Z'
-    expected_response['date'] = '2022-02-03T22:00:00.000Z'
-    # expected_response['children'][0]['date'] = '2022-02-03T14:00:00.000Z'
-    expected_response['children'][0]['date'] = '2022-02-03T22:00:00.000Z'
-    # expected_response['children'][0]['children'][0]['date'] = '2022-02-03T14:00:00.000Z'
-    expected_response['children'][0]['children'][0]['date'] = '2022-02-03T22:00:00.000Z'
+    expected_response['date'] = '2022-02-03T14:00:00.000Z'
+    # expected_response['date'] = '2022-02-03T22:00:00.000Z'
+    expected_response['children'][0]['date'] = '2022-02-03T14:00:00.000Z'
+    # expected_response['children'][0]['date'] = '2022-02-03T22:00:00.000Z'
+    expected_response['children'][0]['children'][0]['date'] = '2022-02-03T14:00:00.000Z'
+    # expected_response['children'][0]['children'][0]['date'] = '2022-02-03T22:00:00.000Z'
     status, response = request(f"/nodes/{CATEGORY_UUIDS[0]}", json_response=True)
     assert status == 200, f"Expected HTTP status code 200, got {status}"
 
@@ -341,24 +342,24 @@ def change_parent_of_category_5():
         'type': 'CATEGORY',
         'parentId': None,
         'price': 2,
-        # 'date': '2022-02-03T14:00:00.000Z',
-        'date': '2022-02-03T22:00:00.000Z',
+        'date': '2022-02-03T14:00:00.000Z',
+        # 'date': '2022-02-03T22:00:00.000Z',
         'children': [
             {'id': CATEGORY_UUIDS[4],
              'name': 'category_4',
              'type': 'CATEGORY',
              'parentId': CATEGORY_UUIDS[3],
              'price': 2,
-             # 'date': '2022-02-03T14:00:00.000Z',
-             'date': '2022-02-03T22:00:00.000Z',
+             'date': '2022-02-03T14:00:00.000Z',
+             # 'date': '2022-02-03T22:00:00.000Z',
              'children': [
                  {'id': OFFER_UUIDS[3],
                   'name': 'offer_3',
                   'type': 'OFFER',
                   'parentId': CATEGORY_UUIDS[4],
                   'price': 3,
-                  # 'date': '2022-02-02T12:00:00.000Z',
-                  'date': '2022-02-02T20:00:00.000Z',
+                  'date': '2022-02-02T12:00:00.000Z',
+                  # 'date': '2022-02-02T20:00:00.000Z',
                   'children': None
                   },
                  {
@@ -367,16 +368,16 @@ def change_parent_of_category_5():
                      'type': 'CATEGORY',
                      'parentId': CATEGORY_UUIDS[4],
                      'price': 2,
-                     # 'date': '2022-02-03T14:00:00.000Z',
-                     'date': '2022-02-03T22:00:00.000Z',
+                     'date': '2022-02-03T14:00:00.000Z',
+                     # 'date': '2022-02-03T22:00:00.000Z',
                      'children': [
                          {'id': OFFER_UUIDS[1],
                           'name': 'offer_1',
                           'type': 'OFFER',
                           'parentId': CATEGORY_UUIDS[5],
                           'price': 2,
-                          # 'date': '2022-02-03T13:00:00.001Z',
-                          'date': '2022-02-03T21:00:00.001Z',
+                          'date': '2022-02-03T13:00:00.001Z',
+                          # 'date': '2022-02-03T21:00:00.001Z',
                           'children': None
                           },
                          {'id': OFFER_UUIDS[2],
@@ -384,8 +385,8 @@ def change_parent_of_category_5():
                           'type': 'OFFER',
                           'parentId': CATEGORY_UUIDS[5],
                           'price': 2,
-                          # 'date': '2022-02-03T13:00:00.001Z',
-                          'date': '2022-02-03T21:00:00.001Z',
+                          'date': '2022-02-03T13:00:00.001Z',
+                          # 'date': '2022-02-03T21:00:00.001Z',
                           'children': None
                           },
                      ]
@@ -403,14 +404,13 @@ def change_parent_of_category_5():
         print_diff(expected_response, response)
         print("Response tree doesn't match expected tree for category_3")
         sys.exit(1)
-    print('Category_6 changed parent from category_2 to category_5')
+    print('Category_5 changed parent from category_2 to category_4')
 
 
 def statistic_category_5():
     # In statistic request for category_5 must be two notes
     params = urllib.parse.urlencode({
-        'dateEnd': '2022-02-03T22:00:00.000Z'
-        # 'dateEnd': '2022-02-03T14:00:00.000Z'
+        'dateEnd': '2022-02-03T14:00:00.001Z'
     })
     status, response = request(
         f"/node/{CATEGORY_UUIDS[5]}/statistic?{params}", json_response=True)
@@ -422,8 +422,8 @@ def statistic_category_5():
                 'name': 'category_5',
                 'parentId': CATEGORY_UUIDS[2],
                 'price': 2,
-                'date': '2022-02-03T21:00:00.001Z'
-                # 'date': '2022-02-03T13:00:00.001Z'
+                # 'date': '2022-02-03T21:00:00.001Z'
+                'date': '2022-02-03T13:00:00.001Z'
             },
             {
                 'id': CATEGORY_UUIDS[5],
@@ -431,8 +431,8 @@ def statistic_category_5():
                 'name': 'category_5',
                 'parentId': CATEGORY_UUIDS[4],
                 'price': 2,
-                'date': '2022-02-03T22:00:00.000Z'
-                # 'date': '2022-02-03T14:00:00.000Z'
+                # 'date': '2022-02-03T22:00:00.000Z'
+                'date': '2022-02-03T14:00:00.000Z'
             }
         ]
     }
@@ -484,7 +484,6 @@ def delete_category_5():
                 'price': 4
             },
         ],
-        # 'updateDate': '2022-02-03T22:01:00.000Z'
         'updateDate': '2022-02-03T14:01:00.000Z'
     }
     status, _ = request("/imports", method="POST", data=IMPORT_CATEGORY_6)
@@ -503,8 +502,8 @@ def delete_category_5():
                 'name': 'offer_5',
                 'parentId': CATEGORY_UUIDS[7],
                 'price': 5,
-                'date': '2022-02-03T22:01:00.000Z'
-                # 'date': '2022-02-03T14:01:00.000Z'
+                # 'date': '2022-02-03T22:01:00.000Z'
+                'date': '2022-02-03T14:01:00.000Z'
             }
         ]
     }
@@ -522,8 +521,8 @@ def delete_category_5():
         'type': 'CATEGORY',
         'parentId': None,
         'price': None,
-        'date': '2022-02-03T22:01:00.000Z',
-        # 'date': '2022-02-03T14:01:00.000Z',
+        # 'date': '2022-02-03T22:01:00.000Z',
+        'date': '2022-02-03T14:01:00.000Z',
         'children': []
     }
     status, response = request(f"/nodes/{CATEGORY_UUIDS[3]}", json_response=True)
@@ -562,32 +561,32 @@ def make_zero_price_for_offer_0():
         'type': 'CATEGORY',
         'parentId': None,
         'price': 0,
-        'date': '2022-02-03T22:05:00.000Z',
-        # 'date': '2022-02-03T14:05:00.000Z',
+        # 'date': '2022-02-03T22:05:00.000Z',
+        'date': '2022-02-03T14:05:00.000Z',
         'children': [{
             'id': CATEGORY_UUIDS[1],
             'name': 'category_1',
             'type': 'CATEGORY',
             'parentId': CATEGORY_UUIDS[0],
             'price': 0,
-            'date': '2022-02-03T22:05:00.000Z',
-            # 'date': '2022-02-03T14:05:00.000Z',
+            # 'date': '2022-02-03T22:05:00.000Z',
+            'date': '2022-02-03T14:05:00.000Z',
             'children': [{
                 'id': CATEGORY_UUIDS[2],
                 'name': 'category_2',
                 'type': 'CATEGORY',
                 'parentId': CATEGORY_UUIDS[1],
                 'price': 0,
-                'date': '2022-02-03T22:05:00.000Z',
-                # 'date': '2022-02-03T14:05:00.000Z',
+                # 'date': '2022-02-03T22:05:00.000Z',
+                'date': '2022-02-03T14:05:00.000Z',
                 'children': [{
                     'id': OFFER_UUIDS[0],
                     'name': 'offer_0',
                     'type': 'OFFER',
                     'parentId': CATEGORY_UUIDS[2],
                     'price': 0,
-                    'date': '2022-02-03T22:05:00.000Z',
-                    # 'date': '2022-02-03T14:05:00.000Z',
+                    # 'date': '2022-02-03T22:05:00.000Z',
+                    'date': '2022-02-03T14:05:00.000Z',
                     'children': None
                 }]}]
         }]
@@ -602,6 +601,7 @@ def make_zero_price_for_offer_0():
         print("Response tree doesn't match expected tree for category_0")
         sys.exit(1)
     print('Updated price of offer_0 to 0.')
+
 
 def delete_all_categories():
     # Deleting category_0
@@ -632,7 +632,8 @@ def delete_all_categories():
 
     print('All categories are deleted.')
 
-def test_all():
+
+def complex_test():
     initial_import()
     change_parent_of_category_8()
     add_category_5()
@@ -645,4 +646,4 @@ def test_all():
 
 
 if __name__ == '__main__':
-    test_all()
+    complex_test()
