@@ -4,6 +4,7 @@ from random import randint
 
 from Code.api.schema import UUIDSchema
 from Code.db.models import Items
+from Code.utils.pg import MAX_QUERY_ARGS
 from aiohttp.web_urldispatcher import View
 from asyncpgsa import PG
 from marshmallow import ValidationError
@@ -13,6 +14,7 @@ from sqlalchemy.orm import aliased
 
 class BaseView(View):
     URL_PATH: str
+    MAX_ITEMS_PER_INSERT = MAX_QUERY_ARGS // 9
 
     @property
     def pg(self) -> PG:
@@ -80,6 +82,47 @@ class BaseView(View):
             items[item]['item_id'] = item
             await conn.execute(query)
         return items
+
+    # @staticmethod
+    # async def create_update_for_items(items, conn):
+    #     if not items:
+    #         return items
+    #     query = "UPDATE items SET"
+    #     name_values = ""
+    #     price_values = ""
+    #     amount_of_offers_values = ""
+    #     total_price_values = ""
+    #     parent_id_values = ""
+    #     date_values = ""
+    #     timezone_values = ""
+    #     where_statement = " WHERE item_id IN ("
+    #     for item_id, item in items.items():
+    #         name_values += " WHEN '" + item_id + "' THEN '" + item['name'] + "'"
+    #         if item['price'] is not None:
+    #             price_values += " WHEN '" + item_id + "' THEN CAST(" + str(item['price']) + " AS int)"
+    #         else:
+    #             price_values += " WHEN '" + item_id + "' THEN CAST(NULL AS int)"
+    #         amount_of_offers_values += " WHEN '" + item_id + "' THEN " + str(item['amount_of_offers'])
+    #         total_price_values += " WHEN '" + item_id + "' THEN " + str(item['total_price'])
+    #         if item['parent_id'] is not None:
+    #             parent_id_values += " WHEN '" + item_id + "' THEN CAST('" + item['parent_id'] + "' AS uuid)"
+    #         else:
+    #             parent_id_values += " WHEN '" + item_id + "' THEN CAST(NULL AS uuid)"
+    #         date_values += " WHEN '" + item_id + "' THEN CAST('" + str(item['date']) + "' AS timestamp)"
+    #         timezone_values += " WHEN '" + item_id + "' THEN '" + item['timezone'] + "'"
+    #         where_statement += "'" + item_id + "', "
+    #         items[item_id]['item_id'] = item_id
+    #     query += " name = CASE item_id " + name_values + " END,"
+    #     query += " price = CASE item_id " + price_values + " END,"
+    #     query += " amount_of_offers = CASE item_id " + amount_of_offers_values + " END,"
+    #     query += " total_price = CASE item_id " + total_price_values + " END,"
+    #     query += " parent_id = CASE item_id " + parent_id_values + " END,"
+    #     query += " date = CASE item_id " + date_values + " END,"
+    #     query += " timezone = CASE item_id " + timezone_values + " END"
+    #     where_statement = where_statement[:-2] + ')'
+    #     query += where_statement
+    #     await conn.execute(query)
+    #     return items
 
     @staticmethod
     def from_records_to_list(records):
@@ -250,3 +293,9 @@ class BaseWithIDView(BaseView):
             return str(self.request.match_info.get('item_id'))
         except Exception as e:
             return None
+
+    async def check_item_id_exists(self, item_uuid: str):
+        items = await self.pg.fetch(select(Items.item_id).filter(Items.item_id == item_uuid))
+        if len(items) > 0:
+            return True
+        return False

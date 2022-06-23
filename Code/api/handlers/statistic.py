@@ -1,12 +1,12 @@
 from datetime import datetime
 
+from Code.api.schema import StatisticSchema
 from Code.db.models import History
 from aiohttp.web import json_response
 from sqlalchemy import and_
 from sqlalchemy import select
 
 from .base import BaseWithIDView
-from Code.api.schema import StatisticSchema
 
 
 class StatisticView(BaseWithIDView):
@@ -22,6 +22,9 @@ class StatisticView(BaseWithIDView):
             StatisticSchema().load(content)
         except Exception as e:
             return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+        item_id = self.item_id
+        if not await self.check_item_id_exists(item_id):
+            return json_response({'code': 404, 'message': 'Item not found'}, status=404)
         if self.item_id is None:
             return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
         try:

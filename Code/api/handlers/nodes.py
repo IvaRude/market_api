@@ -72,6 +72,8 @@ class NodesView(BaseWithIDView):
 
     async def get(self):
         try:
+            if not self.check_item_id_exists(self.item_id):
+                return json_response({'code': 404, 'message': 'Item not found'}, status=404)
             if self.item_id is None:
                 return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
             items = await self.pg.fetch(self.reqursive_down(self.item_id))

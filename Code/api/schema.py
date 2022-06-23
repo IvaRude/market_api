@@ -28,7 +28,9 @@ class ItemSchema(Schema):
         if item['type'] == 'OFFER' and 'price' in item and (item['price'] is None or item['price'] < 0):
             raise ValidationError("Offer's price must be >= 0")
         elif item['type'] == 'CATEGORY' and 'price' in item and item['price'] is not None:
-            raise ValidationError("Offer's price must be >= 0")
+            raise ValidationError("Category's price must be None")
+        elif item['type'] == 'OFFER' and 'price' not in item:
+            raise ValidationError('Offer must have price')
 
 
 class ImportSchema(Schema):

@@ -85,7 +85,7 @@ def test_offer_has_bad_price():
 def test_category_has_price():
     data = {"items": [
         {
-            "type": "OFFER",
+            "type": "CATEGORY",
             "name": '',
             "id": str(uuid.uuid4()),
             'price': 0
@@ -124,6 +124,58 @@ def test_bad_parent_id():
     print("Test bad_parent_id passed.")
 
 
+def test_two_same_ids():
+    item_id = str(uuid.uuid4())
+    data = {"items": [
+        {
+            "type": "OFFER",
+            "name": 'child',
+            "id": item_id,
+            'price': 0,
+        },
+        {
+            "type": "OFFER",
+            "name": 'parent',
+            "id": item_id,
+            'price': 0
+        }
+    ],
+        "updateDate": "2022-02-01T12:00:00.001Z"
+    }
+    import_request(data, 400)
+    print("Test two same ids passed.")
+
+
+def test_try_change_type():
+    item_id = str(uuid.uuid4())
+    data = {"items": [
+        {
+            "type": "OFFER",
+            "name": 'child',
+            "id": item_id,
+            'price': 0,
+        },
+    ],
+        "updateDate": "2022-02-01T12:00:00.001Z"
+    }
+    status, _ = request("/imports", method="POST", data=data)
+    data = {"items": [
+        {
+            "type": "CATEGORY",
+            "name": 'child',
+            "id": item_id,
+        },
+    ],
+        "updateDate": "2022-02-01T12:00:00.001Z"
+    }
+    try:
+        import_request(data, 400)
+    finally:
+        status, _ = request(f"/delete/{item_id}", method="DELETE")
+        assert status == 200, f"Expected HTTP status code 200, got {status}"
+    print('Test changing type passed.')
+
+
 def test_all_validators():
     test_bad_uuid()
     test_null_name()
@@ -132,7 +184,8 @@ def test_all_validators():
     test_offer_has_bad_price()
     test_category_has_price()
     test_bad_parent_id()
-
+    test_two_same_ids()
+    test_try_change_type()
 
 if __name__ == '__main__':
     test_all_validators()

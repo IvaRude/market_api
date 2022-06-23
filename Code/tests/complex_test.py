@@ -310,14 +310,14 @@ def change_parent_of_category_5():
 
     # Again nodes request for category_0: category_5 must gone
     expected_response['children'][0]['children'][0]['children'] = [{'id': OFFER_UUIDS[0],
-                                                              'name': 'offer_0',
-                                                              'type': 'OFFER',
-                                                              'parentId': CATEGORY_UUIDS[2],
-                                                              'price': 1,
-                                                              # 'date': '2022-02-02T12:00:00.000Z',
-                                                              'date': '2022-02-02T20:00:00.000Z',
-                                                              'children': None
-                                                              }, ]
+                                                                    'name': 'offer_0',
+                                                                    'type': 'OFFER',
+                                                                    'parentId': CATEGORY_UUIDS[2],
+                                                                    'price': 1,
+                                                                    # 'date': '2022-02-02T12:00:00.000Z',
+                                                                    'date': '2022-02-02T20:00:00.000Z',
+                                                                    'children': None
+                                                                    }, ]
     # expected_response['date'] = '2022-02-03T14:00:00.000Z'
     expected_response['date'] = '2022-02-03T22:00:00.000Z'
     # expected_response['children'][0]['date'] = '2022-02-03T14:00:00.000Z'
@@ -403,13 +403,245 @@ def change_parent_of_category_5():
         print_diff(expected_response, response)
         print("Response tree doesn't match expected tree for category_3")
         sys.exit(1)
-    print('category_6 changed parent from category_2 to category_5')
+    print('Category_6 changed parent from category_2 to category_5')
+
+
+def statistic_category_5():
+    # In statistic request for category_5 must be two notes
+    params = urllib.parse.urlencode({
+        'dateEnd': '2022-02-03T22:00:00.000Z'
+        # 'dateEnd': '2022-02-03T14:00:00.000Z'
+    })
+    status, response = request(
+        f"/node/{CATEGORY_UUIDS[5]}/statistic?{params}", json_response=True)
+    expected_response = {
+        'items': [
+            {
+                'id': CATEGORY_UUIDS[5],
+                'type': 'CATEGORY',
+                'name': 'category_5',
+                'parentId': CATEGORY_UUIDS[2],
+                'price': 2,
+                'date': '2022-02-03T21:00:00.001Z'
+                # 'date': '2022-02-03T13:00:00.001Z'
+            },
+            {
+                'id': CATEGORY_UUIDS[5],
+                'type': 'CATEGORY',
+                'name': 'category_5',
+                'parentId': CATEGORY_UUIDS[4],
+                'price': 2,
+                'date': '2022-02-03T22:00:00.000Z'
+                # 'date': '2022-02-03T14:00:00.000Z'
+            }
+        ]
+    }
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+    assert response == expected_response, "Wrong statistic for category_5"
+
+    # Deleting offer_1
+    status, _ = request(f"/delete/{OFFER_UUIDS[1]}", method="DELETE")
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    # Again checking statistic of category_5: must be 3 notes
+    expected_response['items'].append(expected_response['items'][1])
+    status, response = request(
+        f"/node/{CATEGORY_UUIDS[5]}/statistic?{params}", json_response=True)
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+    assert response == expected_response, "Wrong statistic for category_5"
+    print('Statistic for category_5 is correct')
+
+
+def delete_category_5():
+    # Import new children for category_4
+    # Offer_5 have the same id that had offer_1 before its deletion
+    IMPORT_CATEGORY_6 = {
+        'items': [
+            {
+                'id': CATEGORY_UUIDS[6],
+                'type': 'CATEGORY',
+                'name': 'category_6',
+                'parentId': CATEGORY_UUIDS[4]
+            },
+            {
+                'id': CATEGORY_UUIDS[7],
+                'type': 'CATEGORY',
+                'name': 'category_7',
+                'parentId': CATEGORY_UUIDS[6]
+            },
+            {
+                'id': OFFER_UUIDS[1],
+                'type': 'OFFER',
+                'name': 'offer_5',
+                'parentId': CATEGORY_UUIDS[7],
+                'price': 5
+            },
+            {
+                'id': OFFER_UUIDS[4],
+                'type': 'OFFER',
+                'name': 'offer_4',
+                'parentId': CATEGORY_UUIDS[6],
+                'price': 4
+            },
+        ],
+        # 'updateDate': '2022-02-03T22:01:00.000Z'
+        'updateDate': '2022-02-03T14:01:00.000Z'
+    }
+    status, _ = request("/imports", method="POST", data=IMPORT_CATEGORY_6)
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    # Statistic request for offer_5: must be only one note
+    params = urllib.parse.urlencode({})
+    status, response = request(
+        f"/node/{OFFER_UUIDS[1]}/statistic?{params}", json_response=True)
+
+    expected_response = {
+        'items': [
+            {
+                'id': OFFER_UUIDS[1],
+                'type': 'OFFER',
+                'name': 'offer_5',
+                'parentId': CATEGORY_UUIDS[7],
+                'price': 5,
+                'date': '2022-02-03T22:01:00.000Z'
+                # 'date': '2022-02-03T14:01:00.000Z'
+            }
+        ]
+    }
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+    assert response == expected_response, "Wrong statistic for offer_5"
+
+    # Deleting category_4
+    status, _ = request(f"/delete/{CATEGORY_UUIDS[4]}", method="DELETE")
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    # Nodes request for category_3: now it has no children, so price must be equal None
+    expected_response = {
+        'id': CATEGORY_UUIDS[3],
+        'name': 'category_3',
+        'type': 'CATEGORY',
+        'parentId': None,
+        'price': None,
+        'date': '2022-02-03T22:01:00.000Z',
+        # 'date': '2022-02-03T14:01:00.000Z',
+        'children': []
+    }
+    status, response = request(f"/nodes/{CATEGORY_UUIDS[3]}", json_response=True)
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    deep_sort_children(response)
+    deep_sort_children(expected_response)
+    if response != expected_response:
+        print_diff(expected_response, response)
+        print("Response tree doesn't match expected tree for category_3")
+        sys.exit(1)
+    print('Category_5 deleted correctly.')
+
+
+def make_zero_price_for_offer_0():
+    # Updating price of offer_0 to 0
+    UPDATE_OFFER_0 = {
+        'items': [
+            {
+                'id': OFFER_UUIDS[0],
+                'type': 'OFFER',
+                'name': 'offer_0',
+                'parentId': CATEGORY_UUIDS[2],
+                'price': 0,
+            }
+        ],
+        'updateDate': '2022-02-03T14:05:00.000Z'
+    }
+    status, _ = request("/imports", method="POST", data=UPDATE_OFFER_0)
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    # Nodes request for category_0: its price must be equal 0
+    expected_response = {
+        'id': CATEGORY_UUIDS[0],
+        'name': 'category_0',
+        'type': 'CATEGORY',
+        'parentId': None,
+        'price': 0,
+        'date': '2022-02-03T22:05:00.000Z',
+        # 'date': '2022-02-03T14:05:00.000Z',
+        'children': [{
+            'id': CATEGORY_UUIDS[1],
+            'name': 'category_1',
+            'type': 'CATEGORY',
+            'parentId': CATEGORY_UUIDS[0],
+            'price': 0,
+            'date': '2022-02-03T22:05:00.000Z',
+            # 'date': '2022-02-03T14:05:00.000Z',
+            'children': [{
+                'id': CATEGORY_UUIDS[2],
+                'name': 'category_2',
+                'type': 'CATEGORY',
+                'parentId': CATEGORY_UUIDS[1],
+                'price': 0,
+                'date': '2022-02-03T22:05:00.000Z',
+                # 'date': '2022-02-03T14:05:00.000Z',
+                'children': [{
+                    'id': OFFER_UUIDS[0],
+                    'name': 'offer_0',
+                    'type': 'OFFER',
+                    'parentId': CATEGORY_UUIDS[2],
+                    'price': 0,
+                    'date': '2022-02-03T22:05:00.000Z',
+                    # 'date': '2022-02-03T14:05:00.000Z',
+                    'children': None
+                }]}]
+        }]
+    }
+    status, response = request(f"/nodes/{CATEGORY_UUIDS[0]}", json_response=True)
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    deep_sort_children(response)
+    deep_sort_children(expected_response)
+    if response != expected_response:
+        print_diff(expected_response, response)
+        print("Response tree doesn't match expected tree for category_0")
+        sys.exit(1)
+    print('Updated price of offer_0 to 0.')
+
+def delete_all_categories():
+    # Deleting category_0
+    status, _ = request(f"/delete/{CATEGORY_UUIDS[0]}", method="DELETE")
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    # Trying to get info about category_0
+    status, _ = request(f"/nodes/{CATEGORY_UUIDS[0]}", json_response=True)
+    assert status == 404, f"Expected HTTP status code 404, got {status}"
+
+    # Trying to get statistic of category_0
+    params = urllib.parse.urlencode({})
+    status, _ = request(
+        f"/node/{OFFER_UUIDS[0]}/statistic?{params}", json_response=True)
+    assert status == 404, f"Expected HTTP status code 404, got {status}"
+
+    # Trying to delete category_0 second time
+    status, _ = request(f"/delete/{CATEGORY_UUIDS[0]}", method="DELETE")
+    assert status == 404, f"Expected HTTP status code 404, got {status}"
+
+    # Deleting category_3
+    status, _ = request(f"/delete/{CATEGORY_UUIDS[3]}", method="DELETE")
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    # Deleting category_8
+    status, _ = request(f"/delete/{CATEGORY_UUIDS[8]}", method="DELETE")
+    assert status == 200, f"Expected HTTP status code 200, got {status}"
+
+    print('All categories are deleted.')
 
 def test_all():
     initial_import()
     change_parent_of_category_8()
     add_category_5()
     change_parent_of_category_5()
+    statistic_category_5()
+    delete_category_5()
+    make_zero_price_for_offer_0()
+    delete_all_categories()
+    print('Complex test passed.')
 
 
 if __name__ == '__main__':

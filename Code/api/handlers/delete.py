@@ -1,4 +1,7 @@
+from Code.db.models import History
 from aiohttp.web import json_response
+from aiomisc import chunk_list
+from sqlalchemy import insert
 
 from .base import BaseWithIDView
 
@@ -11,6 +14,8 @@ class DeleteView(BaseWithIDView):
             async with self.pg.transaction() as conn:
                 if self.item_id is None:
                     return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+                if not self.check_item_id_exists(self.item_id):
+                    return json_response({'code': 404, 'message': 'Item not found'}, status=404)
                 # Finding all parents of this item
                 items = await conn.fetch(self.reqursive_up(self.item_id))
                 item = self.from_records_to_list([items[0]])[0]
@@ -23,7 +28,14 @@ class DeleteView(BaseWithIDView):
                 items_need_to_update.pop(self.item_id)
 
                 # Update query for Items table
-                await self.create_update_for_items(items_need_to_update, conn)
+                insert_history_values = await self.create_update_for_items(items_need_to_update, conn)
+
+                # Making insert query in History table
+                chunked_insert_history_values = chunk_list(insert_history_values.values(), self.MAX_ITEMS_PER_INSERT)
+                for chunk in chunked_insert_history_values:
+                    query = insert(History).values(list(chunk))
+                    query.parameters = []
+                    await conn.execute(query)
 
                 # Delete from Items and History tables
                 items_need_to_delete = await conn.fetch(self.reqursive_down(self.item_id))

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from Code.db.models import Items, History
-from Code.utils.pg import MAX_QUERY_ARGS
 from aiohttp.web import json_response
 from aiohttp_apispec import docs, request_schema
 from aiomisc import chunk_list
@@ -13,7 +12,6 @@ from Code.api.schema import ImportSchema
 
 class ImportView(BaseImportView):
     URL_PATH = '/imports'
-    MAX_ITEMS_PER_INSERT = MAX_QUERY_ARGS // 8
 
     @docs(summary='Inserting new items and updating old items')
     @request_schema(ImportSchema())
@@ -68,6 +66,7 @@ class ImportView(BaseImportView):
                     query = insert(Items).values(list(chunk))
                     query.parameters = []
                     await conn.execute(query)
+
                 # collecting all items that will be updated
                 all_queries = [self.reqursive_up(item['item_id']) for item in insert_items + update_items]
                 query = union(*all_queries)
@@ -76,11 +75,9 @@ class ImportView(BaseImportView):
                 for item in items_need_to_update:
                     items_need_to_update[item]['date'] = datetime.fromisoformat(update_date)
                     items_need_to_update[item]['timezone'] = time_zone
+
                 # Making big update query in Items table
                 insert_history_values = await self.create_update_for_items(items_need_to_update, conn)
-
-                dates = select(Items.date)
-                print(await conn.fetch(dates))
 
                 # Making insert query in History table
                 chunked_insert_history_values = chunk_list(insert_history_values.values(), self.MAX_ITEMS_PER_INSERT)

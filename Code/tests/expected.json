@@ -1,39 +1,9 @@
 {
-  "children": [
-    {
-      "children": [
-        {
-          "children": [
-            {
-              "children": null,
-              "date": "2022-02-02T20:00:00.000Z",
-              "id": "42d11513-db2e-4160-9460-c658d8926dd0",
-              "name": "offer_0",
-              "parentId": "f544cc0b-6365-40fe-96db-3b1d37dfeeb0",
-              "price": 1,
-              "type": "OFFER"
-            }
-          ],
-          "date": "2022-02-02T22:00:00.000Z",
-          "id": "f544cc0b-6365-40fe-96db-3b1d37dfeeb0",
-          "name": "category_2",
-          "parentId": "d8fff7e3-d402-4a58-91fc-a7c434d91dd3",
-          "price": 1,
-          "type": "CATEGORY"
-        }
-      ],
-      "date": "2022-02-02T22:00:00.000Z",
-      "id": "d8fff7e3-d402-4a58-91fc-a7c434d91dd3",
-      "name": "category_1",
-      "parentId": "cea4ac4f-0ebd-4f9b-a45a-37b0a043be35",
-      "price": 1,
-      "type": "CATEGORY"
-    }
-  ],
-  "date": "2022-02-02T22:00:00.000Z",
-  "id": "cea4ac4f-0ebd-4f9b-a45a-37b0a043be35",
-  "name": "category_0",
+  "children": [],
+  "date": "2022-02-03T22:01:00.000Z",
+  "id": "b98df48e-d061-491e-bae1-0b4c89f078a6",
+  "name": "category_3",
   "parentId": null,
-  "price": 1,
+  "price": null,
   "type": "CATEGORY"
 }

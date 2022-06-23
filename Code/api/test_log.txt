@@ -234,3 +234,324 @@ INFO:Code.utils.pg:Connecting to database at 04:50:08
 INFO:Code.utils.pg:Connected to database
 INFO:Code.utils.pg:Disconnecting from database
 INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 19:24:28
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 19:48:36
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 19:49:46
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 19:50:32
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 19:51:08
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 19:51:23
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 19:54:14
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 20:13:49
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 20:33:27
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 20:35:59
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 20:54:17
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 20:54:39
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 20:55:44
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:04:01
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:08:16
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:09:13
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:09:25
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:10:55
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:12:41
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:13:30
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:14:01
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:34:56
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:35:28
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:37:17
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:38:04
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:38:30
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:38:41
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:39:02
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:39:53
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:40:02
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:41:34
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:42:47
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:43:52
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:45:52
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:46:00
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:49:51
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:50:00
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 21:52:00
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:15:35
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:15:45
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:28:02
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:28:32
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:29:36
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:33:55
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:35:24
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:37:47
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:38:02
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:38:24
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:39:50
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:40:03
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:40:42
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:41:23
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:42:46
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:43:21
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:49:15
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:51:30
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:54:04
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:56:34
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:56:51
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 22:57:57
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:03:22
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:03:36
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:06:30
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:07:05
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:07:51
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:08:19
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:08:52
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:08:59
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:09:41
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:10:07
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:10:57
+INFO:Code.utils.pg:Connected to database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:13:51
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:16:58
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:20:50
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:24:37
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:25:18
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
+INFO:__main__:App created
+INFO:Code.utils.pg:Connecting to database at 23:30:47
+INFO:Code.utils.pg:Connected to database
+INFO:Code.utils.pg:Disconnecting from database
+INFO:Code.utils.pg:Disconnected from database
