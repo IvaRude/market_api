@@ -13,6 +13,7 @@ class StatisticView(BaseWithIDView):
     URL_PATH = r'/node/{item_id:[\w-]+}/statistic'
 
     async def get(self):
+        # Валидация входных данных
         try:
             content = self.request.rel_url.query
             if 'dateStart' in content:
@@ -27,6 +28,7 @@ class StatisticView(BaseWithIDView):
             return json_response({'code': 404, 'message': 'Item not found'}, status=404)
         if self.item_id is None:
             return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+
         try:
             try:
                 date_start = datetime.fromisoformat(self.from_iso_to_datetime_with_tz(content['dateStart'])[0])

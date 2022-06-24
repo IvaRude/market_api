@@ -6,7 +6,10 @@ from .base import BaseWithIDView
 class NodesView(BaseWithIDView):
     URL_PATH = r'/nodes/{item_id:[\w-]+}'
 
-    def from_records_to_dict(self, records):
+    def from_records_to_dict(self, records: list):
+        '''
+        Переводит строки из БД в dict, добавляет поле children.
+        '''
         ans = {}
         for record in records:
             record_id = str(record['item_id'])
@@ -31,7 +34,11 @@ class NodesView(BaseWithIDView):
                     ans[parent_id]['children'] = [record_id]
         return ans
 
-    def make_json_answer(self, items):
+    def make_json_answer(self, items: dict):
+        '''
+        Составляет итоговый json-ответ.
+        :param items: все элементы с полем children
+        '''
         def make_shop_unit(item_id):
             nonlocal items, shop_units
             shop_unit = {

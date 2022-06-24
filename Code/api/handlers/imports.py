@@ -21,14 +21,12 @@ class ImportView(BaseImportView):
             self.validate_date(content['updateDate'])
             ImportSchema().load(content)
             update_date, time_zone = self.from_iso_to_datetime_with_tz(content['updateDate'])
-            # print('update_date', update_date)
             content['updateDate'] = update_date
             content['timezone'] = time_zone
             all_import_ids = set([item['id'] for item in content['items']])
             if len(all_import_ids) == 0:
                 return json_response({'code': 200, 'message': 'Imported Successfully'}, status=200)
             async with self.pg.transaction() as conn:
-
                 # inserting new items
                 query = "SELECT item_id FROM items WHERE item_id IN ("
                 for id in all_import_ids:

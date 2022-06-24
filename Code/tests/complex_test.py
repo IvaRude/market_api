@@ -121,13 +121,20 @@ ADD_CATEGORY_5 = {
 
 
 def initial_import():
-    # Import with many items
+    '''
+    Вставка многих элементов
+    '''
     status, _ = request("/imports", method="POST", data=INITIAL_IMPORT_DATA)
     assert status == 200, f"Expected HTTP status code 200, got {status}"
     print('Initial import made.')
 
 
 def change_parent_of_category_8():
+    '''
+    Меняем отца одной из категорий на сына её брата.
+    Проверяем, что у изначального отца не изменилась цена, но обновилась дата.
+    Затем делаем эту категорию без отца.
+    '''
     # First changing parent from category_0 to category_3,
     # then checking statistic of category_0: it's price must be the same
     status, _ = request("/imports", method="POST", data=UPDATE_CATEGORY_8)
@@ -158,6 +165,9 @@ def change_parent_of_category_8():
 
 
 def add_category_5():
+    '''
+    Проверяем краевой случай в запросах /sales: чтобы не попали лишние элементы во временной отрезок.
+    '''
     # Adding new category with time == first import time + 24h + 1ms
     status, _ = request("/imports", method="POST", data=ADD_CATEGORY_5)
     assert status == 200, f"Expected HTTP status code 200, got {status}"
@@ -216,6 +226,10 @@ def add_category_5():
 
 
 def change_parent_of_category_5():
+    '''
+    Сначала проверяем запрос /nodes для категории, затем переставляем одну из её категорий-поддетей к другой категории.
+    Проверяем, что корректно изменилась информация у изначального и нового отцов.
+    '''
     # Firstly make nodes request for category_0
     expected_response = {
         'id': CATEGORY_UUIDS[0],
@@ -408,6 +422,11 @@ def change_parent_of_category_5():
 
 
 def statistic_category_5():
+    '''
+    У одной из категорий удаляем товар.
+    Проверяем, что в статистике появляется новая запись после удаления и с датой,
+    совпадающей с предыдущим последним обновлением.
+    '''
     # In statistic request for category_5 must be two notes
     params = urllib.parse.urlencode({
         'dateEnd': '2022-02-03T14:00:00.001Z'
@@ -453,6 +472,11 @@ def statistic_category_5():
 
 
 def delete_category_5():
+    '''
+    Вставляем новый товар с id, совпадающим с id удаленного ранее товара.
+    Проверяем, что на запрос /statistic с этим id выводится только информация по новому товару,
+    а про старый ничего не выводится.
+    '''
     # Import new children for category_4
     # Offer_5 have the same id that had offer_1 before its deletion
     IMPORT_CATEGORY_6 = {
@@ -538,6 +562,10 @@ def delete_category_5():
 
 
 def make_zero_price_for_offer_0():
+    '''
+    У категории есть только один товар.
+    Меняем цену товара на 0, проверяем, что цена категории стала равной 0.
+    '''
     # Updating price of offer_0 to 0
     UPDATE_OFFER_0 = {
         'items': [
@@ -604,6 +632,10 @@ def make_zero_price_for_offer_0():
 
 
 def delete_all_categories():
+    '''
+    Удаляем все категории, пытаемся сделать запросы /delete, /statistic, /nodes по этим удаленным категориям, и получаем
+    соответствующие ошибки.
+    '''
     # Deleting category_0
     status, _ = request(f"/delete/{CATEGORY_UUIDS[0]}", method="DELETE")
     assert status == 200, f"Expected HTTP status code 200, got {status}"

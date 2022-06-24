@@ -13,12 +13,14 @@ class SalesView(BaseView):
     URL_PATH = '/sales'
 
     async def get(self):
+        # Валидация входных данных
         try:
             content = self.request.rel_url.query
             self.validate_date(content['date'])
             SalesSchema().load(content)
         except Exception as e:
             return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+
         sales_date, _ = self.from_iso_to_datetime_with_tz(content['date'])
         sales_date = datetime.fromisoformat(sales_date)
         try:

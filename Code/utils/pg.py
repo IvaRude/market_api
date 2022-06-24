@@ -13,10 +13,8 @@ load_dotenv()
 DB_HOST = os.getenv('DATABASE_HOST')
 
 DEFAULT_PG_URL = 'postgresql://admin:admin@0.0.0.0:5432/apiDB'
-# DEFAULT_PG_URL = 'postgresql://admin:admin@0.0.0.0:54321/testDB3'
 
 if DB_HOST:
-    # DEFAULT_PG_URL = 'postgresql://admin:admin@' + DB_HOST + ':5432/testDB2'
     DEFAULT_PG_URL = 'postgresql://admin:admin@' + DB_HOST + ':5432/apiDB'
 
 MAX_QUERY_ARGS = 32767

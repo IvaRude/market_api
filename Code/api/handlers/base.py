@@ -31,6 +31,10 @@ class BaseView(View):
 
     @staticmethod
     def from_iso_to_datetime_with_tz(date: str) -> tuple:
+        '''
+        Принимает на вход дату, разделяет на саму дату и часовой пояс, дату переводит к UTC +00:00.
+        На выход обновленная дата и сдвиг.
+        '''
         date = datetime.fromisoformat(date.replace('Z', '+00:00'))
         tz = str(date.tzinfo)[3:]
         if tz == '':
@@ -47,6 +51,10 @@ class BaseView(View):
 
     @staticmethod
     def from_datetime_with_tz_to_iso(data: tuple) -> str:
+        '''
+        На вход принимает дату в UTC +00:00 и сдвиг часового пояса, прибавляет к дате сдвиг часового пояса.
+        На выход iso-формат даты.
+        '''
         date, tz = data
         final_tz = 'Z' if tz == '+00:00' else tz
         date = datetime.fromisoformat(date)
@@ -59,6 +67,10 @@ class BaseView(View):
         return date.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + final_tz
 
     def from_record_to_statistic_unit(self, record):
+        '''
+        На вход дается запись из БД таблицы History.
+        Переводит в Statistic Unit для ответа на запрос.
+        '''
         statistic_unit = {
             'id': str(record['item_id']),
             'name': record['name'],
@@ -85,6 +97,10 @@ class BaseView(View):
 
     @staticmethod
     async def create_update_for_items(items, conn):
+        '''
+        Делает UPDATE запрос в таблицу Items.
+        Выодит преобразованный словарь для дальнейшего запрос INSERT в таблицу History.
+        '''
         if not items:
             return items
         query = "UPDATE items SET"
@@ -126,6 +142,9 @@ class BaseView(View):
 
     @staticmethod
     def from_records_to_list(records):
+        '''
+        Переводит строки из БД в list.
+        '''
         ans = []
         for record in records:
             ans.append({
@@ -143,6 +162,9 @@ class BaseView(View):
 
     @staticmethod
     def from_records_to_dict(records):
+        '''
+        Переводит строки из БД в dict.
+        '''
         ans = {}
         for record in records:
             ans[str(record['item_id'])] = {
@@ -159,6 +181,10 @@ class BaseView(View):
 
     @staticmethod
     def reqursive_up(item_id):
+        '''
+        На вход item_id, составляет рекурсивный SELECT запрос к таблице Items.
+        Собирает элемент с id == item_id и всех его родителей до самого верхнего.
+        '''
         reqursive_query = select(Items). \
             filter(Items.item_id == item_id).cte(name=str(randint(1, 1000000)), recursive=True)
         incl_alias = aliased(reqursive_query, name=str(randint(1, 1000000)) + 'pr')
@@ -170,6 +196,10 @@ class BaseView(View):
 
     @staticmethod
     def reqursive_down(item_id):
+        '''
+        На вход item_id, составляет рекурсивный SELECT запрос к таблице Items.
+        Собирает элемент с id == item_id и всех его детей до самого нижнего.
+        '''
         reqursive_query = select(Items). \
             filter(Items.item_id == item_id).cte(name=str(randint(1, 1000000)), recursive=True)
         incl_alias = aliased(reqursive_query, name=str(randint(1, 1000000)) + 'pr')
@@ -180,10 +210,13 @@ class BaseView(View):
         return select(reqursive_query)
 
     @staticmethod
-    def update_info(cur_items, new_info, new_ids=None):
+    def update_info(cur_items: dict, new_info: dict, new_ids=None):
         '''
-        Makes all updates for items inside Python.
-        Returns dict with correct data for all items after all inserts, updates, deletes.
+        cur_items: словарь с текущими состояниями элементов таблицы Items, который должны будут обновиться;
+        new_info: информация из запроса /imports или /delete;
+        new_ids: id всех элементов из запроса /imports, которых нет в БД (первая вставка);
+        Внутри cur_items производит все необходимые изменения.
+        На выход: обновленный cur_items, далее будет совершен UPDATE.
         '''
 
         if new_ids is None:
@@ -261,6 +294,12 @@ class BaseView(View):
 
 class BaseImportView(BaseView):
     async def check_parents_are_categories(self, import_items, new_ids, conn):
+        '''
+        Проверяет, что ни у одного элемента в запросе /imports не указан в качестве родителя OFFER.
+        :param import_items: все элементы из запроса /imports
+        :param new_ids: id всех элементов из запроса /imports, которых нет в БД (первая вставка);
+        :param conn: connect к БД
+        '''
         all_types = {}
         parent_ids = set()
         for item in import_items:
@@ -270,6 +309,7 @@ class BaseImportView(BaseView):
                 parent_ids.add(item['parentId'])
         if len(parent_ids) == 0:
             return
+
         # Getting types of items that are parents in import
         query = "SELECT item_id, type FROM items WHERE item_id IN ("
         for parent_id in parent_ids:

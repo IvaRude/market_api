@@ -7,6 +7,9 @@ from .base import BaseView
 
 
 class ListView(BaseView):
+    '''
+    Выводит всю информацию из БД.
+    '''
     URL_PATH = '/'
     MAX_ITEMS_PER_INSERT = MAX_QUERY_ARGS // 8
 

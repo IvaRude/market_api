@@ -6,6 +6,9 @@ from .base import BaseView
 
 
 class DeleteAllView(BaseView):
+    '''
+    Удаляет все строки из таблиц Items и History.
+    '''
     URL_PATH = '/deleteall'
 
     async def get(self):

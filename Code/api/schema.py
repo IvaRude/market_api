@@ -25,6 +25,9 @@ class ItemSchema(Schema):
 
     @validates_schema
     def validate_price(self, item, **_):
+        '''
+        Проверка цены элемента: у товара должны быть цена >= 0, у категории цена = None
+        '''
         if item['type'] == 'OFFER' and 'price' in item and (item['price'] is None or item['price'] < 0):
             raise ValidationError("Offer's price must be >= 0")
         elif item['type'] == 'CATEGORY' and 'price' in item and item['price'] is not None:
@@ -39,6 +42,9 @@ class ImportSchema(Schema):
 
     @validates_schema
     def validate_unique_item_id(self, data, **_):
+        '''
+        Проверка того, что на входе нет двух элементов с одинаковым id
+        '''
         items = data['items']
         unique_item_ids = set()
         for item in items:
