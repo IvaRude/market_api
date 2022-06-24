@@ -4,6 +4,7 @@
 - БД Postgres
 - aiohttp
 - SQLAlchemy
+Swagger-документация доступна по адресу 0.0.0.0:80/api/doc.
 ### Команды
 Приложение запускается по адресу 0.0.0.0:80 командой: `docker-compose up`.
 
