@@ -1,14 +1,17 @@
 from datetime import datetime, timedelta
 
+from Code.api.schema import SalesSchema
 from Code.db.models import Items
 from aiohttp.web import json_response
+from aiohttp_apispec import docs, request_schema
 from sqlalchemy import and_
 from sqlalchemy import select
 
 from .base import BaseView
-from Code.api.schema import SalesSchema
 
 
+@docs(summary='Получить информацию об обновленных товарах за последние 24 часа от date.')
+@request_schema(SalesSchema())
 class SalesView(BaseView):
     URL_PATH = '/sales'
 

@@ -1,13 +1,13 @@
 from datetime import datetime
 
+from Code.api.schema import ImportSchema
 from Code.db.models import Items, History
 from aiohttp.web import json_response
 from aiohttp_apispec import docs, request_schema
 from aiomisc import chunk_list
-from sqlalchemy import insert, union, select
+from sqlalchemy import insert, union
 
 from .base import BaseImportView
-from Code.api.schema import ImportSchema
 
 
 class ImportView(BaseImportView):

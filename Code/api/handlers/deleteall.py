@@ -1,10 +1,12 @@
 from Code.db.models import History, Items
 from aiohttp.web import json_response
+from aiohttp_apispec import docs
 from sqlalchemy import delete
 
 from .base import BaseView
 
 
+@docs(summary='Удаляет все элементы из всех таблиц.')
 class DeleteAllView(BaseView):
     '''
     Удаляет все строки из таблиц Items и History.

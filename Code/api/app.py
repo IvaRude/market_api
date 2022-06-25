@@ -18,7 +18,10 @@ def create_app():
     '''
     app = Application(client_max_size=MAX_REQUEST_SIZE)
     app.cleanup_ctx.append(partial(setup_pg, args=None))
-    setup_aiohttp_apispec(app=app, title="My Documentation", version="v1")
+
+    # Добавляет документацию по адресу /api/doc
+    setup_aiohttp_apispec(app=app, title="My Documentation", version="v1", swagger_path='/api/doc')
+
     for handler in HANDLERS:
         app.router.add_route('*', handler.URL_PATH, handler)
     return app

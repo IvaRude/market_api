@@ -1,11 +1,13 @@
 from Code.db.models import History
 from aiohttp.web import json_response
+from aiohttp_apispec import docs
 from aiomisc import chunk_list
 from sqlalchemy import insert
 
 from .base import BaseWithIDView
 
 
+@docs(summary='Удаляет элемент c id == item_id и всех его детей из всех таблиц.')
 class DeleteView(BaseWithIDView):
     URL_PATH = r'/delete/{item_id:[\w-]+}'
 

@@ -1,11 +1,13 @@
 from Code.db.models import History, Items
 from Code.utils.pg import MAX_QUERY_ARGS
 from aiohttp.web import json_response
+from aiohttp_apispec import docs
 from sqlalchemy import select
 
 from .base import BaseView
 
 
+@docs(summary='Показывает всю информацию из БД.')
 class ListView(BaseView):
     '''
     Выводит всю информацию из БД.

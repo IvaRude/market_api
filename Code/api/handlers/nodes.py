@@ -1,8 +1,10 @@
 from aiohttp.web import json_response
+from aiohttp_apispec import docs
 
 from .base import BaseWithIDView
 
 
+@docs(summary='Показывает последнюю актуальную информацию об элементе и его детях.')
 class NodesView(BaseWithIDView):
     URL_PATH = r'/nodes/{item_id:[\w-]+}'
 
@@ -39,6 +41,7 @@ class NodesView(BaseWithIDView):
         Составляет итоговый json-ответ.
         :param items: все элементы с полем children
         '''
+
         def make_shop_unit(item_id):
             nonlocal items, shop_units
             shop_unit = {

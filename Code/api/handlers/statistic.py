@@ -3,12 +3,15 @@ from datetime import datetime
 from Code.api.schema import StatisticSchema
 from Code.db.models import History
 from aiohttp.web import json_response
+from aiohttp_apispec import docs, request_schema
 from sqlalchemy import and_
 from sqlalchemy import select
 
 from .base import BaseWithIDView
 
 
+@docs(summary='Получить информацию обо всех обновлениях элемента с id == item_id в полуинтервале [dateStart, dateEnd).')
+@request_schema(StatisticSchema())
 class StatisticView(BaseWithIDView):
     URL_PATH = r'/node/{item_id:[\w-]+}/statistic'
 
