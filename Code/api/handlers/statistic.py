@@ -25,15 +25,7 @@ class StatisticView(BaseWithIDView):
             if 'dateEnd' in content:
                 self.validate_date(content['dateEnd'])
             StatisticSchema().load(content)
-        except Exception as e:
-            return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
-        if self.item_id is None:
-            return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
-        item_id = self.item_id
-        if not await self.check_item_id_exists(item_id):
-            return json_response({'code': 404, 'message': 'Item not found'}, status=404)
-
-        try:
+            # Проверка, что dateStart <= dateEnd
             try:
                 date_start = datetime.fromisoformat(self.from_iso_to_datetime_with_tz(content['dateStart'])[0])
             except Exception as e:
@@ -42,6 +34,18 @@ class StatisticView(BaseWithIDView):
                 date_end = datetime.fromisoformat(self.from_iso_to_datetime_with_tz(content['dateEnd'])[0])
             except Exception as e:
                 date_end = None
+            if date_start and date_end and date_end < date_start:
+                return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+        except Exception as e:
+            return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+        if self.item_id is None:
+            return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+
+        # Выполнение запроса
+        item_id = self.item_id
+        if not await self.check_item_id_exists(item_id):
+            return json_response({'code': 404, 'message': 'Item not found'}, status=404)
+        try:
             if date_start and date_end:
                 records = await self.pg.fetch(select(History).filter(
                     and_(History.item_id == self.item_id, History.date >= date_start, History.date < date_end)))

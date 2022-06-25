@@ -14,13 +14,13 @@ Swagger-документация доступна по адресу 0.0.0.0:80/a
 ### Описание БД
 Было создано 2 таблицы. В таблице Items хранится вся актуальная информация (после последнего обновления) о товарах и категориях, 
 в таблице History - все записи об обновлениях элементов. Чтобы корректно высчитывать среднюю цену категорий, принято хранить количество (amount_of_offers)
-и сумму (total_price) всех её товаров. Не получилось записать в БД дату вместе с часовым поясом, поэтому решил хранить их раздельно (date, timezone).
+и сумму (total_price) всех её товаров. Не получилось записать в БД дату вместе с часовым поясом, поэтому решил хранить их раздельно (date, timezone): при поступлении новой даты перевожу её ко времени UTC +00:00 и записываю в БД, при возврате даты в response перевожу обратно ко времени, соответствующему нужному часовом поясу.
 ###### Таблица Items
 1. item_id: UUID, PRIMARY KEY
 2. parent_id: UUID, FOREIGN KEY (Items.item_id)
 3. type: STRING
 4. name: STRING
-5. date: TIMESTAMP
+5. date: TIMESTAMP, INDEX
 6. timezone: STRING
 7. price: INTEGER
 8. total_price: INTEGER
@@ -31,7 +31,7 @@ Swagger-документация доступна по адресу 0.0.0.0:80/a
 3. parent_id: UUID
 4. type: STRING
 5. name: STRING
-6. date: TIMESTAMP
+6. date: TIMESTAMP, INDEX
 7. timezone: STRING
 8. price: INTEGER
 9. total_price: INTEGER

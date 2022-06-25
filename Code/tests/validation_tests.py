@@ -234,6 +234,7 @@ def test_bad_id_statistic_request():
 
 def test_bad_date_statistic_request():
     item_id = str(uuid.uuid4())
+    # Wrong format
     date_variants = ["2022-02-01 00:00:00.000Z", "2022-02-03T00:00:00.000+00:00"]
     for date_variant in date_variants:
         params = urllib.parse.urlencode({
@@ -250,9 +251,19 @@ def test_bad_date_statistic_request():
             f"/node/{item_id}/statistic?{params}", json_response=True)
         assert status == 400, f"Expected HTTP status code 400, got {status}"
 
+    # Wrong format
     params = urllib.parse.urlencode({
         "dateStart": "2022-02-01 00:00:00.000Z",
         "dateEnd": "2022-02-03T00:00:00.000+00:00"
+    })
+    status, response = request(
+        f"/node/{item_id}/statistic?{params}", json_response=True)
+    assert status == 400, f"Expected HTTP status code 400, got {status}"
+
+    # dateEnd < dateStart
+    params = urllib.parse.urlencode({
+        "dateStart": "2022-02-01T01:00:00.000Z",
+        "dateEnd": "2022-02-01T00:00:00.000Z"
     })
     status, response = request(
         f"/node/{item_id}/statistic?{params}", json_response=True)
