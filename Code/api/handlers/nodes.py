@@ -4,7 +4,6 @@ from aiohttp_apispec import docs
 from .base import BaseWithIDView
 
 
-@docs(summary='Показывает последнюю актуальную информацию об элементе и его детях.')
 class NodesView(BaseWithIDView):
     URL_PATH = r'/nodes/{item_id:[\w-]+}'
 
@@ -80,6 +79,7 @@ class NodesView(BaseWithIDView):
                     cur_ind = cur_item_ind
         return shop_units[self.item_id]
 
+    @docs(summary='Показывает последнюю актуальную информацию об элементе и его детях.')
     async def get(self):
         try:
             if not self.check_item_id_exists(self.item_id):

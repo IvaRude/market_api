@@ -10,11 +10,11 @@ from sqlalchemy import select
 from .base import BaseView
 
 
-@docs(summary='Получить информацию об обновленных товарах за последние 24 часа от date.')
-@request_schema(SalesSchema())
 class SalesView(BaseView):
     URL_PATH = '/sales'
 
+    @docs(summary='Получить информацию об обновленных товарах за последние 24 часа от date.')
+    @request_schema(SalesSchema())
     async def get(self):
         # Валидация входных данных
         try:

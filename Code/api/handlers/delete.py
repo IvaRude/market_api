@@ -7,10 +7,10 @@ from sqlalchemy import insert
 from .base import BaseWithIDView
 
 
-@docs(summary='Удаляет элемент c id == item_id и всех его детей из всех таблиц.')
 class DeleteView(BaseWithIDView):
     URL_PATH = r'/delete/{item_id:[\w-]+}'
 
+    @docs(summary='Удаляет элемент c id == item_id и всех его детей из всех таблиц.')
     async def delete(self):
         try:
             async with self.pg.transaction() as conn:

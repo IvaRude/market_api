@@ -7,7 +7,6 @@ from sqlalchemy import select
 from .base import BaseView
 
 
-@docs(summary='Показывает всю информацию из БД.')
 class ListView(BaseView):
     '''
     Выводит всю информацию из БД.
@@ -15,6 +14,7 @@ class ListView(BaseView):
     URL_PATH = '/'
     MAX_ITEMS_PER_INSERT = MAX_QUERY_ARGS // 8
 
+    @docs(summary='Показывает всю информацию из БД.')
     async def get(self):
         body = {}
         all_query = select(Items)

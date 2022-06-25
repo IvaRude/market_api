@@ -6,13 +6,13 @@ from sqlalchemy import delete
 from .base import BaseView
 
 
-@docs(summary='Удаляет все элементы из всех таблиц.')
 class DeleteAllView(BaseView):
     '''
     Удаляет все строки из таблиц Items и History.
     '''
     URL_PATH = '/deleteall'
 
+    @docs(summary='Удаляет все элементы из всех таблиц.')
     async def get(self):
         try:
             async with self.pg.transaction() as conn:

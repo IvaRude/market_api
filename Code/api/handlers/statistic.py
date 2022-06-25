@@ -10,11 +10,12 @@ from sqlalchemy import select
 from .base import BaseWithIDView
 
 
-@docs(summary='Получить информацию обо всех обновлениях элемента с id == item_id в полуинтервале [dateStart, dateEnd).')
-@request_schema(StatisticSchema())
 class StatisticView(BaseWithIDView):
     URL_PATH = r'/node/{item_id:[\w-]+}/statistic'
 
+    @docs(
+        summary='Получить информацию обо всех обновлениях элемента с id == item_id в полуинтервале [dateStart, dateEnd).')
+    @request_schema(StatisticSchema())
     async def get(self):
         # Валидация входных данных
         try:
