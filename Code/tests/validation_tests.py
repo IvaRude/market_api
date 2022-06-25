@@ -1,3 +1,4 @@
+import urllib.parse
 import uuid
 
 from .unit_test import request
@@ -176,6 +177,89 @@ def test_try_change_type():
     print('Test changing type passed.')
 
 
+def test_bad_id_delete_request():
+    item_id = str(uuid.uuid4())
+    status, _ = request(f"/delete/{item_id}", method="DELETE")
+    assert status == 404, f"Expected HTTP status code 404, got {status}"
+
+    item_id = '1'
+    status, _ = request(f"/delete/{item_id}", method="DELETE")
+    assert status == 400, f"Expected HTTP status code 400, got {status}"
+    print('Test bad id in /delete request passed.')
+
+
+def test_bad_id_nodes_request():
+    item_id = str(uuid.uuid4())
+    status, _ = request(f"/nodes/{item_id}", method="GET")
+    assert status == 404, f"Expected HTTP status code 404, got {status}"
+
+    item_id = '1'
+    status, _ = request(f"/nodes/{item_id}", method="GET")
+    assert status == 400, f"Expected HTTP status code 400, got {status}"
+    print('Test bad id in /nodes request passed.')
+
+
+def test_bad_date_sales_request():
+    params = urllib.parse.urlencode({
+        "date": "2022-02-04 00:00:00.000Z"
+    })
+    status, response = request(f"/sales?{params}", json_response=True)
+    assert status == 400, f"Expected HTTP status code 400, got {status}"
+
+    params = urllib.parse.urlencode({
+        "date": "2022-02-04T00:00:00.000+00:00"
+    })
+    status, response = request(f"/sales?{params}", json_response=True)
+    assert status == 400, f"Expected HTTP status code 400, got {status}"
+    print('Test bad date in /sales request passed.')
+
+
+def test_bad_id_statistic_request():
+    item_id = str(uuid.uuid4())
+    params = urllib.parse.urlencode({
+        "dateStart": "2022-02-01T00:00:00.000Z",
+        "dateEnd": "2022-02-03T00:00:00.000Z"
+    })
+    status, response = request(
+        f"/node/{item_id}/statistic?{params}", json_response=True)
+    assert status == 404, f"Expected HTTP status code 404, got {status}"
+
+    item_id = '1'
+    status, response = request(
+        f"/node/{item_id}/statistic?{params}", json_response=True)
+    assert status == 400, f"Expected HTTP status code 400, got {status}"
+
+    print('Test bad id in /statistic request passed.')
+
+
+def test_bad_date_statistic_request():
+    item_id = str(uuid.uuid4())
+    date_variants = ["2022-02-01 00:00:00.000Z", "2022-02-03T00:00:00.000+00:00"]
+    for date_variant in date_variants:
+        params = urllib.parse.urlencode({
+            "dateStart": date_variant,
+        })
+        status, response = request(
+            f"/node/{item_id}/statistic?{params}", json_response=True)
+        assert status == 400, f"Expected HTTP status code 400, got {status}"
+
+        params = urllib.parse.urlencode({
+            "dateEnd": date_variant
+        })
+        status, response = request(
+            f"/node/{item_id}/statistic?{params}", json_response=True)
+        assert status == 400, f"Expected HTTP status code 400, got {status}"
+
+    params = urllib.parse.urlencode({
+        "dateStart": "2022-02-01 00:00:00.000Z",
+        "dateEnd": "2022-02-03T00:00:00.000+00:00"
+    })
+    status, response = request(
+        f"/node/{item_id}/statistic?{params}", json_response=True)
+    assert status == 400, f"Expected HTTP status code 400, got {status}"
+    print('Test bad date in /statistic request passed.')
+
+
 def test_all_validators():
     test_bad_uuid()
     test_null_name()
@@ -186,6 +270,11 @@ def test_all_validators():
     test_bad_parent_id()
     test_two_same_ids()
     test_try_change_type()
+    test_bad_id_delete_request()
+    test_bad_id_nodes_request()
+    test_bad_date_sales_request()
+    test_bad_id_statistic_request()
+    test_bad_date_statistic_request()
 
 
 if __name__ == '__main__':

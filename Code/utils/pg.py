@@ -18,7 +18,6 @@ if DB_HOST:
     DEFAULT_PG_URL = 'postgresql://admin:admin@' + DB_HOST + ':5432/apiDB'
 
 MAX_QUERY_ARGS = 32767
-MAX_INTEGER = 2147483647
 
 PROJECT_PATH = Path(__file__).parent.parent.resolve()
 logging.basicConfig(filename='test_log.txt')

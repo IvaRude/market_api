@@ -23,11 +23,11 @@ class StatisticView(BaseWithIDView):
             StatisticSchema().load(content)
         except Exception as e:
             return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
+        if self.item_id is None:
+            return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
         item_id = self.item_id
         if not await self.check_item_id_exists(item_id):
             return json_response({'code': 404, 'message': 'Item not found'}, status=404)
-        if self.item_id is None:
-            return json_response({'code': 400, 'message': 'Validation failed'}, status=400)
 
         try:
             try:

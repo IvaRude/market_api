@@ -7,13 +7,8 @@ from aiohttp.web import run_app
 
 from .app import create_app
 
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "../..")))
-
 API_ADDRESS = '0.0.0.0'
 API_PORT = 80
-
-
-# API_PORT = 1025
 
 
 def main():
